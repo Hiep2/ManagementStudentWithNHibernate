@@ -1,0 +1,53 @@
+﻿@model ManagementStudentWithNHibernate.Models.StudentViewModel
+
+<style>
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form {
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .form-control {
+        max-width: 100%;
+    }
+</style>
+
+<div class="form-container">
+    <form method="post">
+        <input type="hidden" asp-for="Student.Id" />
+        <div class="form-group">
+            <label asp-for="Student.Name"></label>
+            <input asp-for="Student.Name" class="form-control" />
+            <span asp-validation-for="Student.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Student.Sex"></label>
+            <input asp-for="Student.Sex" class="form-control" />
+            <span asp-validation-for="Student.Sex" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Student.BirthDate"></label>
+            <input asp-for="Student.BirthDate" class="form-control" />
+            <span asp-validation-for="Student.BirthDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Student.ClassName"></label>
+            <input asp-for="Student.ClassName" class="form-control" />
+            <span asp-validation-for="Student.ClassName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Student.StudyYear"></label>
+            <input asp-for="Student.StudyYear" class="form-control" />
+            <span asp-validation-for="Student.StudyYear" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">>@(@Model.IsEdit ? "Update" : "Create")</button>
+        <a class="btn btn-success btn-custom"  asp-page="/Students/Index">Cancel</a>
+    </form>
+</div>

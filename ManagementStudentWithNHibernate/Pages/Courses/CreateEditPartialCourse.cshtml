@@ -1,0 +1,39 @@
+﻿@model ManagementStudentWithNHibernate.Models.CourseViewModel
+@{
+}
+<style>
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form {
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .form-control {
+        max-width: 100%;
+    }
+</style>
+
+<div class="form-container">
+    <form method="post">
+        <input type="hidden" asp-for="Course.Id" />
+        <div class="form-group">
+            <label asp-for="Course.CourseName"></label>
+            <input asp-for="Course.CourseName" class="form-control" />
+            <span asp-validation-for="Course.CourseName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Course.CourseUnit"></label>
+            <input asp-for="Course.CourseUnit" class="form-control" />
+            <span asp-validation-for="Course.CourseUnit" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-custom">@(@Model.IsEdit ? "Update" : "Create")</button>
+        <a class="btn btn-success btn-custom" asp-page="/Courses/Index">Cancel</a>
+    </form>
+</div>

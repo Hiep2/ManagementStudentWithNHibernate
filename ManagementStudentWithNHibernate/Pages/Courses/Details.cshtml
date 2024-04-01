@@ -1,0 +1,64 @@
+﻿@page
+@model ManagementStudentWithNHibernate.Pages.Courses.DetailsModel
+@{
+}
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Course:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Course.CourseName
+        </dd>
+        <dt class="col-sm-2">
+            Unit:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Course.CourseUnit
+        </dd>
+    </dl>
+</div>
+<a class="btn btn-primary btn-custom" asp-page="/Courses/AddStudentToCourse" asp-route-courseId="@Model.Course.Id">Add Student</a>
+<a class="btn btn-success btn-custom" asp-page="/Courses/Index">Return</a>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Sex</th>
+            <th>Birth Date</th>
+            <th>Class Name</th>
+            <th>Study Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.EnrolledStudents.Any())
+        {
+            @foreach (var student in Model.EnrolledStudents)
+            {
+
+                <tr>
+                    <td>@student.Name</td>
+                    <td>@student.Sex</td>
+                    <td>@student.BirthDate</td>
+                    <td>@student.ClassName</td>
+                    <td>@student.StudyYear</td>
+                    <td>
+                        <form method="post" asp-page-handler="DeleteStudent" asp-route-courseId="@Model.Course.Id" asp-route-studentId="@student.Id">
+                            <button type="submit" class="btn btn-danger btn-custom">
+                                <i class="fas fa-trash-alt"></i>Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <p>No Student enrolled in the Course.</p>
+        }
+    </tbody>
+</table>
+

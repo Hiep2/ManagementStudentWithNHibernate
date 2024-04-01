@@ -1,0 +1,69 @@
+﻿@page
+@model ManagementStudentWithNHibernate.Pages.Enrollments.IndexModel
+@{
+}
+
+<style>
+    .search-form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+        .search-form input[type="text"] {
+            width: 300px;
+            border: 2px solid #007bff;
+            border-right: none;
+            padding: 5px 10px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-form button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: 2px solid #007bff;
+            border-left: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+            .search-form button:hover {
+                background-color: #0056b3;
+            }
+</style>
+
+<form method="get" asp-page="SearchStudent" class="search-form">
+    <input type="text" name="searchString" placeholder="ID or Name" />
+    <button type="submit">Suchen</button>
+</form>
+
+@if (Model.SearchResults != null && Model.SearchResults.Any())
+{
+    <h3>Search Result</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Aktion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.SearchResults)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    <td>
+                        <a asp-page="/Enrollments/Details" asp-route-id="@student.Id" class="btn btn-primary">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No student found</p>
+}

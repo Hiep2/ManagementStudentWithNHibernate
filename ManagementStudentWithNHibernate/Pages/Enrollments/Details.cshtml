@@ -1,0 +1,93 @@
+﻿@page
+@model ManagementStudentWithNHibernate.Pages.Enrollments.DetailsModel
+@{
+}
+
+<h2>Student details</h2>
+<a class="btn btn-success btn-custom" asp-page="/Enrollments/Index">Return</a>
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            ID:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Student.Id
+        </dd>
+        <dt class="col-sm-2">
+            Name:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Student.Name
+        </dd>
+        <dt class="col-sm-2">
+            Geschlecht:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Student.Sex
+        </dd>
+        <dt class="col-sm-2">
+            Geburtsdatum:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Student.BirthDate
+        </dd>
+        <dt class="col-sm-2">
+            Klasse:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Student.ClassName
+        </dd>
+        <dt class="col-sm-2">
+            Studienjahr:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Student.StudyYear
+        </dd>
+    </dl>
+</div>
+
+<h2>Course List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Course Name</th>
+            <th>Course Units</th>
+            <th>Process Grade</th>
+            <th>Component Grade</th>
+            <th>Final Grade</th>
+            <th>Pass</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Courses.Any())
+        {
+
+            @foreach (var enrollment in Model.Enrollment)
+            {
+
+                <tr>
+                    <td>@enrollment.Course.Id</td>
+                    <td>@enrollment.Course.CourseName</td>
+                    <td>@enrollment.Course.CourseUnit</td>
+                    <td>@enrollment.ProzessGrade</td>
+                    <td>@enrollment.ComponentGrade</td>
+                    <td>@enrollment.finalGrade</td>
+                    <td>@(enrollment.isPassed ? "Yes" : "No")</td>
+                    <td>
+                        <a class="btn btn-primary btn-custom" asp-page="/Enrollments/Edit" asp-route-courseId="@enrollment.Course.Id" asp-route-studentId="@Model.Student.Id">
+                            <i class="fas fa-edit"></i>Edit
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <p>Currently no courses enrolled</p>
+        }
+    </tbody>
+</table>
+

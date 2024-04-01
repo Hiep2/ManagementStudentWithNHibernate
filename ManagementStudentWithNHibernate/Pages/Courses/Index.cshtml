@@ -1,0 +1,50 @@
+﻿@page
+@model ManagementStudentWithNHibernate.Pages.Courses.IndexModel
+@{
+}
+
+<h2>Course List</h2>
+<a class="btn btn-primary btn-x" asp-page="Create">
+    <i class="fas fa-plus"></i>Add New Course
+</a>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Course Name</th>
+            <th>Course Units</th>
+            <th>Enrolled Students</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var course in Model.Courses)
+        {
+
+            <tr style="cursor:pointer" onclick="location.href='@Url.Page("/Courses/Details", new { courseId = course.Id })'">
+                <td>@course.Id</td>
+                <td>@course.CourseName</td>
+                <td>@course.CourseUnit</td>
+                <td>@course.EnrollmentCount</td>
+                <td>
+                    <a class="btn btn-primary btn-custom" asp-page="/Courses/Edit" asp-route-id="@course.Id">
+                        <i class="fas fa-edit"></i>Edit
+                    </a>
+                    <a class="btn btn-danger btn-custom" asp-page="/Courses/Delete" asp-route-id="@course.Id">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('table tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                window.location.href = row.getAttribute('onclick').split("'")[1];
+            });
+        });
+    });
+</script>

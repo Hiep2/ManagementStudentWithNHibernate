@@ -1,0 +1,26 @@
+﻿@page
+@model ManagementStudentWithNHibernate.Pages.Courses.DeleteModel
+@{
+}
+
+<h1>Löschen bestätigen</h1>
+
+<h3>Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?</h3>
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Course.CourseName)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Course.Id" />
+        <button type="submit" class="btn btn-danger bts-custom">Delete</button>
+        <a asp-page="./Index" class="bts-custom">Cancel</a>
+    </form>
+</div>

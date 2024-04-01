@@ -1,0 +1,23 @@
+﻿@page
+@model ManagementStudentWithNHibernate.Pages.Enrollments.EditModel
+@{
+}
+
+<h2>Edit Course Grade</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Enrollment.Id" />
+    <input type="hidden" asp-for="Enrollment.Student.Id"/>
+    <input type="hidden" asp-for="Enrollment.Course.Id"/>
+
+    <div>
+        <label>Process Grade</label>
+        <input asp-for="Enrollment.ProzessGrade" />
+    </div>
+    <div>
+        <label>Component Grade</label>
+        <input asp-for="Enrollment.ComponentGrade" />
+    </div>
+    <button class="btn btn-success btn-custom type="submit">Save</button>
+    <a class="btn btn-success btn-custom" asp-page="/Enrollments/Index">Cancel</a>
+</form>

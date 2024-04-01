@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="ManagementStudentWithNHibernate.Models" assembly="ManagementStudentWithNHibernate">
+  <class name="Student" table="students">
+    <id name="Id" column="StudentId">
+      <generator class="native"/>
+    </id>
+    <property name="Name"/>
+    <property name="Sex"/>
+    <property name="BirthDate"/>
+    <property name="ClassName"/>
+    <property name="StudyYear"/>
+  </class>
+</hibernate-mapping>

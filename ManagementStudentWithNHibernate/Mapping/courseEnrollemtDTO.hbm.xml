@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="ManagementStudentWithNHibernate.DTO" assembly="ManagementStudentWithNHibernate">
+  <class name="CourseEnrollmentDTO" table="course_enrollments_view" mutable="false">
+    <id name="Id" column="CourseId">
+      <generator class="assigned"/>
+    </id>
+    <property name="CourseName" column="CourseName" type="string" />
+    <property name="CourseUnit" column="CourseUnit" type="int" />
+    <property name="EnrollmentCount" column="EnrollmentCount" type="int" />
+  </class>
+</hibernate-mapping>

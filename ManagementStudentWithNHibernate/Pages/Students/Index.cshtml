@@ -1,0 +1,43 @@
+﻿@page
+@model ManagementStudentWithNHibernate.Pages.Students.IndexModel
+@{
+    ViewData["Title"] = "Student Management";
+}
+
+<h2>Student List</h2>
+<a class="btn btn-primary btn-x" asp-page="/Students/Create">
+    <i class="fas fa-plus"></i>Add New Student
+</a>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Sex</th>
+            <th>Birth Date</th>
+            <th>Class Name</th>
+            <th>Study Year</th>
+        </tr>
+    </thead>
+    <tbody> 
+
+        @foreach (var student in Model.Students)
+        {
+                
+                <tr>
+                    <td>@student.Name</td>
+                    <td>@student.Sex</td>
+                    <td>@student.BirthDate</td>
+                    <td>@student.ClassName</td>
+                    <td>@student.StudyYear</td>
+                <td>
+                    <a class="btn btn-primary btn-custom" asp-page="/Students/Edit" asp-route-id="@student.Id">
+                        <i class="fas fa-edit"></i>Edit
+                    </a>    
+                    <a class="btn btn-danger btn-custom" asp-page="/Students/Delete" asp-route-id="@student.Id">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                </td>
+                </tr>
+        }
+    </tbody>
+</table>

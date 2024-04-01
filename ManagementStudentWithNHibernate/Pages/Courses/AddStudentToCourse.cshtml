@@ -1,0 +1,28 @@
+﻿@page
+@model ManagementStudentWithNHibernate.Pages.Courses.AddStudentToCourseModel
+@{
+}
+<h2>Add Students</h2>
+
+<form method="post" asp-page-handler="AddStudents" asp-route-courseId="@Model.CourseId">
+    <table>
+        <thead>
+            <tr>
+                <th></th> <!-- Spalte für Checkboxen -->
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" name="selectedStudents" value="@student.Id" />
+                </td>
+                <td>@student.Name</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <button class="btn btn-primary btn-custom" type="submit">Add</button>
+</form>
